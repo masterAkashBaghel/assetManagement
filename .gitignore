@@ -1,0 +1,9 @@
+#  list files for c# project
+
+# ds store
+.DS_Store
+
+
+# Visual Studio Code
+
+.vscode
