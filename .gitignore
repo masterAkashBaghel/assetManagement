@@ -1,9 +1,21 @@
-#  list files for c# project
+# Ignore build directories
+bin/
+obj/
 
-# ds store
-.DS_Store
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
 
+# Visual Studio Code-specific files
+.vscode/
 
-# Visual Studio Code
+# Docker specific files
+**/docker-compose.yml
+**/docker-compose.override.yml
 
-.vscode
+# Database connection config (if sensitive)
+appsettings.json
+
+# Log files
+*.log
