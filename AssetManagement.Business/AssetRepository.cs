@@ -9,7 +9,8 @@ namespace AssetManagement.Business
         public bool AddAsset(Asset asset)
         {
             using var connection = DBConnection.GetConnection();
-            var command = new SqlCommand("INSERT INTO Assets (name, type, serial_number, purchase_date, location, status, owner_id) VALUES (@name, @type, @serialNumber, @purchaseDate, @location, @status, @ownerId)", connection);
+            var command = new SqlCommand("INSERT INTO Assets (asset_id,name, type, serial_number, purchase_date, location, status, owner_id) VALUES (  @AssetId, @name, @type, @serialNumber, @purchaseDate, @location, @status, @ownerId)", connection);
+            command.Parameters.AddWithValue("@AssetId", asset.AssetId);
             command.Parameters.AddWithValue("@name", asset.Name);
             command.Parameters.AddWithValue("@type", asset.Type);
             command.Parameters.AddWithValue("@serialNumber", asset.SerialNumber);

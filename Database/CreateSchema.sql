@@ -1,6 +1,8 @@
 
 CREATE DATABASE AssetManagement;
 
+USE AssetManagement;
+
 
 CREATE TABLE Employees
 (
@@ -10,6 +12,7 @@ CREATE TABLE Employees
     email VARCHAR(100),
     password VARCHAR(100)
 );
+
 
 CREATE TABLE Assets
 (

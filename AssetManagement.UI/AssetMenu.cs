@@ -52,6 +52,8 @@ namespace AssetManagement.UI
         static void AddAsset(AssetService assetService)
         {
             var asset = new Asset();
+            Console.Write("Enter Asset ID: ");
+            asset.AssetId = int.Parse(Console.ReadLine());
             Console.Write("Enter Name: ");
             asset.Name = Console.ReadLine();
             Console.Write("Enter Type: ");

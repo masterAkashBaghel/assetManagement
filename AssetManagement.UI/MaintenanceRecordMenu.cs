@@ -73,7 +73,7 @@ namespace AssetManagement.UI
         {
             var maintenanceRecord = new MaintenanceRecord();
             Console.Write("Enter Maintenance Record ID: ");
-            maintenanceRecord.MaintenanceRecordId = int.Parse(Console.ReadLine());
+            maintenanceRecord.MaintenanceId = int.Parse(Console.ReadLine());
             Console.Write("Enter Asset ID: ");
             maintenanceRecord.AssetId = int.Parse(Console.ReadLine());
             Console.Write("Enter Maintenance Date (yyyy-mm-dd): ");
@@ -114,7 +114,7 @@ namespace AssetManagement.UI
             var maintenanceRecord = maintenanceRecordService.GetMaintenanceRecordById(maintenanceRecordId);
             if (maintenanceRecord != null)
             {
-                Console.WriteLine($"ID: {maintenanceRecord.MaintenanceRecordId}, Asset ID: {maintenanceRecord.AssetId}, Maintenance Date: {maintenanceRecord.MaintenanceDate}, Description: {maintenanceRecord.Description}");
+                Console.WriteLine($"ID: {maintenanceRecord.MaintenanceId}, Asset ID: {maintenanceRecord.AssetId}, Maintenance Date: {maintenanceRecord.MaintenanceDate}, Description: {maintenanceRecord.Description}");
             }
             else
             {
@@ -127,7 +127,7 @@ namespace AssetManagement.UI
             var maintenanceRecords = maintenanceRecordService.GetAllMaintenanceRecords();
             foreach (var maintenanceRecord in maintenanceRecords)
             {
-                Console.WriteLine($"ID: {maintenanceRecord.MaintenanceRecordId}, Asset ID: {maintenanceRecord.AssetId}, Maintenance Date: {maintenanceRecord.MaintenanceDate}, Description: {maintenanceRecord.Description}");
+                Console.WriteLine($"ID: {maintenanceRecord.MaintenanceId}, Asset ID: {maintenanceRecord.AssetId}, Maintenance Date: {maintenanceRecord.MaintenanceDate}, Description: {maintenanceRecord.Description}");
             }
         }
     }

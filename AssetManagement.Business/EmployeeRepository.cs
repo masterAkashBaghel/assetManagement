@@ -11,7 +11,8 @@ namespace AssetManagement.Business
         public bool AddEmployee(Employee employee)
         {
             using var connection = DBConnection.GetConnection();
-            var command = new SqlCommand("INSERT INTO Employees (name, department, email, password) VALUES (@name, @department, @Email, @Password)", connection);
+            var command = new SqlCommand("INSERT INTO Employees (employee_id ,name, department, email, password) VALUES ( @EmployeeId, @name, @department, @Email, @Password)", connection);
+            command.Parameters.AddWithValue("@EmployeeId", employee.EmployeeId);
             command.Parameters.AddWithValue("@name", employee.Name);
             command.Parameters.AddWithValue("@department", employee.Department);
             command.Parameters.AddWithValue("@Email", employee.Email);

@@ -1,0 +1,12 @@
+/Users/admin/Desktop/assetManagment/AssetManagement.Entities/bin/Debug/net8.0/AssetManagement.Entities.deps.json
+/Users/admin/Desktop/assetManagment/AssetManagement.Entities/bin/Debug/net8.0/AssetManagement.Entities.dll
+/Users/admin/Desktop/assetManagment/AssetManagement.Entities/bin/Debug/net8.0/AssetManagement.Entities.pdb
+/Users/admin/Desktop/assetManagment/AssetManagement.Entities/obj/Debug/net8.0/AssetManagement.Entities.GeneratedMSBuildEditorConfig.editorconfig
+/Users/admin/Desktop/assetManagment/AssetManagement.Entities/obj/Debug/net8.0/AssetManagement.Entities.AssemblyInfoInputs.cache
+/Users/admin/Desktop/assetManagment/AssetManagement.Entities/obj/Debug/net8.0/AssetManagement.Entities.AssemblyInfo.cs
+/Users/admin/Desktop/assetManagment/AssetManagement.Entities/obj/Debug/net8.0/AssetManagement.Entities.csproj.CoreCompileInputs.cache
+/Users/admin/Desktop/assetManagment/AssetManagement.Entities/obj/Debug/net8.0/AssetManagement.Entities.sourcelink.json
+/Users/admin/Desktop/assetManagment/AssetManagement.Entities/obj/Debug/net8.0/AssetManagement.Entities.dll
+/Users/admin/Desktop/assetManagment/AssetManagement.Entities/obj/Debug/net8.0/refint/AssetManagement.Entities.dll
+/Users/admin/Desktop/assetManagment/AssetManagement.Entities/obj/Debug/net8.0/AssetManagement.Entities.pdb
+/Users/admin/Desktop/assetManagment/AssetManagement.Entities/obj/Debug/net8.0/ref/AssetManagement.Entities.dll

@@ -52,6 +52,8 @@ namespace AssetManagement.UI
         static void AddEmployee(EmployeeService employeeService)
         {
             var employee = new Employee();
+            Console.Write("Enter Employee ID: ");
+            employee.EmployeeId = int.Parse(Console.ReadLine());
             Console.Write("Enter Name: ");
             employee.Name = Console.ReadLine();
             Console.Write("Enter Department: ");
