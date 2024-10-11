@@ -1,5 +1,8 @@
 using AssetManagement.Business;
 using AssetManagement.Entities;
+using AssetManagement.Exceptions;
+using System;
+using System.Collections.Generic;
 
 namespace AssetManagement.Services
 {
@@ -14,27 +17,74 @@ namespace AssetManagement.Services
 
         public bool AddMaintenanceRecord(MaintenanceRecord maintenanceRecord)
         {
-            return _maintenanceRecordRepository.AddMaintenanceRecord(maintenanceRecord);
+            try
+            {
+                return _maintenanceRecordRepository.AddMaintenanceRecord(maintenanceRecord);
+            }
+            catch (Exception ex)
+            {
+                throw new MaintenanceException("Failed to add maintenance record.", ex);
+            }
         }
 
         public bool UpdateMaintenanceRecord(MaintenanceRecord maintenanceRecord)
         {
-            return _maintenanceRecordRepository.UpdateMaintenanceRecord(maintenanceRecord);
+            try
+            {
+                return _maintenanceRecordRepository.UpdateMaintenanceRecord(maintenanceRecord);
+            }
+            catch (Exception ex)
+            {
+                throw new MaintenanceException("Failed to update maintenance record.", ex);
+            }
         }
 
         public bool DeleteMaintenanceRecord(int maintenanceId)
         {
-            return _maintenanceRecordRepository.DeleteMaintenanceRecord(maintenanceId);
+            try
+            {
+                return _maintenanceRecordRepository.DeleteMaintenanceRecord(maintenanceId);
+            }
+            catch (Exception ex)
+            {
+                throw new MaintenanceException("Failed to delete maintenance record.", ex);
+            }
         }
 
         public MaintenanceRecord GetMaintenanceRecordById(int maintenanceId)
         {
-            return _maintenanceRecordRepository.GetMaintenanceRecordById(maintenanceId);
+            try
+            {
+                return _maintenanceRecordRepository.GetMaintenanceRecordById(maintenanceId);
+            }
+            catch (Exception ex)
+            {
+                throw new MaintenanceException("Failed to retrieve maintenance record by ID.", ex);
+            }
         }
 
         public IEnumerable<MaintenanceRecord> GetAllMaintenanceRecords()
         {
-            return _maintenanceRecordRepository.GetAllMaintenanceRecords();
+            try
+            {
+                return _maintenanceRecordRepository.GetAllMaintenanceRecords();
+            }
+            catch (Exception ex)
+            {
+                throw new MaintenanceException("Failed to retrieve all maintenance records.", ex);
+            }
+        }
+
+        public bool PerformMaintenance(int assetId, string maintenanceDate, string description, double cost)
+        {
+            try
+            {
+                return _maintenanceRecordRepository.PerformMaintenance(assetId, maintenanceDate, description, cost);
+            }
+            catch (Exception ex)
+            {
+                throw new MaintenanceException("Failed to perform maintenance.", ex);
+            }
         }
     }
 }

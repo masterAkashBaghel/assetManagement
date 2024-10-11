@@ -13,13 +13,25 @@ namespace AssetManagement.UI
 
             while (true)
             {
-                Console.WriteLine("Asset Allocation Management");
+                Console.WriteLine();
+                Console.WriteLine("---------------------------------------------");
+                Console.WriteLine("---------------------------------------------");
+                Console.WriteLine("-----WELCOME TO ASSET ALLOCATION DASHBOARD------");
+                Console.WriteLine();
+                Console.WriteLine("---------------------------------------------");
                 Console.WriteLine("1. Allocate Asset");
+                Console.WriteLine("---------------------------------------------");
                 Console.WriteLine("2. Deallocate Asset");
+                Console.WriteLine("---------------------------------------------");
                 Console.WriteLine("3. View Asset Allocation by ID");
+                Console.WriteLine("---------------------------------------------");
                 Console.WriteLine("4. View All Asset Allocations");
+                Console.WriteLine("---------------------------------------------");
                 Console.WriteLine("5. Back to Main Menu");
+                Console.WriteLine("---------------------------------------------");
+
                 Console.Write("Select an option: ");
+
                 var option = Console.ReadLine();
 
                 switch (option)
@@ -36,8 +48,10 @@ namespace AssetManagement.UI
                     case "4":
                         ViewAllAssetAllocations(assetAllocationService);
                         break;
+
                     case "5":
                         return;
+
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
                         break;
@@ -48,6 +62,10 @@ namespace AssetManagement.UI
         static void AllocateAsset(AssetAllocationService assetAllocationService)
         {
             var assetAllocation = new AssetAllocation();
+
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("----------ALLOCATE ASSET---------");
             Console.Write("Enter Asset ID: ");
             assetAllocation.AssetId = int.Parse(Console.ReadLine());
             Console.Write("Enter Employee ID: ");
@@ -67,6 +85,9 @@ namespace AssetManagement.UI
 
         static void DeallocateAsset(AssetAllocationService assetAllocationService)
         {
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("----------DEALLOCATE ASSET---------");
             Console.Write("Enter Allocation ID: ");
             var allocationId = int.Parse(Console.ReadLine());
             Console.Write("Enter Return Date (yyyy-mm-dd): ");
@@ -84,13 +105,22 @@ namespace AssetManagement.UI
 
         static void ViewAssetAllocationById(AssetAllocationService assetAllocationService)
         {
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("----------VIEW ASSET ALLOCATION BY ID---------");
             Console.Write("Enter Allocation ID: ");
             var allocationId = int.Parse(Console.ReadLine());
 
             var assetAllocation = assetAllocationService.GetAssetAllocationById(allocationId);
             if (assetAllocation != null)
             {
-                Console.WriteLine($"ID: {assetAllocation.AllocationId}, Asset ID: {assetAllocation.AssetId}, Employee ID: {assetAllocation.EmployeeId}, Allocation Date: {assetAllocation.AllocationDate}, Return Date: {assetAllocation.ReturnDate}");
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("| {0,-15} | {1,-10} | {2,-10} | {3,-15} | {4,-15} |",
+                    "Allocation ID", "Asset ID", "Employee ID", "Allocation Date", "Return Date");
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("| {0,-15} | {1,-10} | {2,-10} | {3,-15} | {4,-15} |",
+                    assetAllocation.AllocationId, assetAllocation.AssetId, assetAllocation.EmployeeId, assetAllocation.AllocationDate.ToString("yyyy-MM-dd"), assetAllocation.ReturnDate?.ToString("yyyy-MM-dd") ?? "N/A");
+                Console.WriteLine("-------------------------------------------------------------");
             }
             else
             {
@@ -101,10 +131,69 @@ namespace AssetManagement.UI
         static void ViewAllAssetAllocations(AssetAllocationService assetAllocationService)
         {
             var assetAllocations = assetAllocationService.GetAllAssetAllocations();
-            foreach (var assetAllocation in assetAllocations)
+            if (assetAllocations.Any())
             {
-                Console.WriteLine($"ID: {assetAllocation.AllocationId}, Asset ID: {assetAllocation.AssetId}, Employee ID: {assetAllocation.EmployeeId}, Allocation Date: {assetAllocation.AllocationDate}, Return Date: {assetAllocation.ReturnDate}");
+                Console.WriteLine("---------------------------------------------------------------------------------------------------------------------------------");
+                Console.WriteLine("| {0,-15} | {1,-10} | {2,-10} | {3,-15} | {4,-15} |",
+                    "Allocation ID", "Asset ID", "Employee ID", "Allocation Date", "Return Date");
+                Console.WriteLine("---------------------------------------------------------------------------------------------------------------------------------");
+
+                foreach (var assetAllocation in assetAllocations)
+                {
+                    Console.WriteLine("| {0,-15} | {1,-10} | {2,-10} | {3,-15} | {4,-15} |",
+                        assetAllocation.AllocationId, assetAllocation.AssetId, assetAllocation.EmployeeId, assetAllocation.AllocationDate.ToString("yyyy-MM-dd"), assetAllocation.ReturnDate?.ToString("yyyy-MM-dd") ?? "N/A");
+                }
+
+                Console.WriteLine("---------------------------------------------------------------------------------------------------------------------------------");
+            }
+            else
+            {
+                Console.WriteLine("No asset allocations found.");
             }
         }
+
+        // static void ReserveAsset(AssetAllocationService assetAllocationService)
+        // {
+        //     Console.WriteLine("---------------------------------------------");
+        //     Console.WriteLine("---------------------------------------------");
+        //     Console.WriteLine("----------RESERVE ASSET---------");
+        //     Console.Write("Enter Asset ID: ");
+        //     var assetId = int.Parse(Console.ReadLine());
+        //     Console.Write("Enter Employee ID: ");
+        //     var employeeId = int.Parse(Console.ReadLine());
+        //     Console.Write("Enter Reservation Date (yyyy-mm-dd): ");
+        //     var reservationDate = Console.ReadLine();
+        //     Console.Write("Enter Start Date (yyyy-mm-dd): ");
+        //     var startDate = Console.ReadLine();
+        //     Console.Write("Enter End Date (yyyy-mm-dd): ");
+        //     var endDate = Console.ReadLine();
+
+        //     if (assetAllocationService.ReserveAsset(assetId, employeeId, reservationDate, startDate, endDate))
+        //     {
+        //         Console.WriteLine("Asset reserved successfully.");
+        //     }
+        //     else
+        //     {
+        //         Console.WriteLine("Failed to reserve asset.");
+        //     }
+        // }
+
+        // static void WithdrawReservation(AssetAllocationService assetAllocationService)
+        // {
+        //     Console.WriteLine("---------------------------------------------");
+        //     Console.WriteLine("---------------------------------------------");
+        //     Console.WriteLine("----------WITHDRAW RESERVATION---------");
+        //     Console.Write("Enter Reservation ID: ");
+        //     var reservationId = int.Parse(Console.ReadLine());
+
+        //     if (assetAllocationService.WithdrawReservation(reservationId))
+        //     {
+        //         Console.WriteLine("Reservation withdrawn successfully.");
+        //     }
+        //     else
+        //     {
+        //         Console.WriteLine("Failed to withdraw reservation.");
+        //     }
+        // }
     }
 }

@@ -6,6 +6,11 @@
     <ProjectReference Include="..\AssetManagement.Services\AssetManagement.Services.csproj" />
     <ProjectReference Include="..\AssetManagement.Util\AssetManagement.Util.csproj" />
   </ItemGroup>
+<ItemGroup>
+  <None Update="appsettings.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>

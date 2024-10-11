@@ -1,5 +1,7 @@
 using AssetManagement.Business;
 using AssetManagement.Entities;
+using AssetManagement.Exceptions;
+using System.Collections.Generic;
 
 namespace AssetManagement.Services
 {
@@ -14,22 +16,50 @@ namespace AssetManagement.Services
 
         public bool ReserveAsset(Reservation reservation)
         {
-            return _reservationRepository.ReserveAsset(reservation);
+            try
+            {
+                return _reservationRepository.ReserveAsset(reservation);
+            }
+            catch (Exception ex)
+            {
+                throw new ReservationException("Failed to reserve asset.", ex);
+            }
         }
 
         public bool WithdrawReservation(int reservationId)
         {
-            return _reservationRepository.WithdrawReservation(reservationId);
+            try
+            {
+                return _reservationRepository.WithdrawReservation(reservationId);
+            }
+            catch (Exception ex)
+            {
+                throw new ReservationException("Failed to withdraw reservation.", ex);
+            }
         }
 
         public Reservation GetReservationById(int reservationId)
         {
-            return _reservationRepository.GetReservationById(reservationId);
+            try
+            {
+                return _reservationRepository.GetReservationById(reservationId);
+            }
+            catch (Exception ex)
+            {
+                throw new ReservationException("Failed to retrieve reservation by ID.", ex);
+            }
         }
 
         public IEnumerable<Reservation> GetAllReservations()
         {
-            return _reservationRepository.GetAllReservations();
+            try
+            {
+                return _reservationRepository.GetAllReservations();
+            }
+            catch (Exception ex)
+            {
+                throw new ReservationException("Failed to retrieve all reservations.", ex);
+            }
         }
     }
 }

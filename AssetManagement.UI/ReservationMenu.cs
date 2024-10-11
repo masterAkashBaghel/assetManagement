@@ -13,12 +13,15 @@ namespace AssetManagement.UI
 
             while (true)
             {
+                Console.WriteLine("---------------------------------------------");
                 Console.WriteLine("Reservation Management");
+                Console.WriteLine("---------------------------------------------");
                 Console.WriteLine("1. Reserve Asset");
                 Console.WriteLine("2. Withdraw Reservation");
                 Console.WriteLine("3. View Reservation by ID");
                 Console.WriteLine("4. View All Reservations");
                 Console.WriteLine("5. Back to Main Menu");
+                Console.WriteLine("---------------------------------------------");
                 Console.Write("Select an option: ");
                 var option = Console.ReadLine();
 
@@ -48,6 +51,11 @@ namespace AssetManagement.UI
         static void ReserveAsset(ReservationService reservationService)
         {
             var reservation = new Reservation();
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("Reserve Asset");
+            Console.WriteLine("---------------------------------------------");
+            Console.Write("Enter reservation ID: ");
+            reservation.ReservationId = int.Parse(Console.ReadLine());
             Console.Write("Enter Asset ID: ");
             reservation.AssetId = int.Parse(Console.ReadLine());
             Console.Write("Enter Employee ID: ");
@@ -63,10 +71,14 @@ namespace AssetManagement.UI
             {
                 Console.WriteLine("Failed to reserve asset.");
             }
+            Console.WriteLine("---------------------------------------------");
         }
 
         static void WithdrawReservation(ReservationService reservationService)
         {
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("Withdraw Reservation");
+            Console.WriteLine("---------------------------------------------");
             Console.Write("Enter Reservation ID: ");
             var reservationId = int.Parse(Console.ReadLine());
 
@@ -78,31 +90,61 @@ namespace AssetManagement.UI
             {
                 Console.WriteLine("Failed to withdraw reservation.");
             }
+            Console.WriteLine("---------------------------------------------");
         }
 
         static void ViewReservationById(ReservationService reservationService)
         {
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("View Reservation by ID");
+            Console.WriteLine("---------------------------------------------");
             Console.Write("Enter Reservation ID: ");
             var reservationId = int.Parse(Console.ReadLine());
 
             var reservation = reservationService.GetReservationById(reservationId);
             if (reservation != null)
             {
-                Console.WriteLine($"ID: {reservation.ReservationId}, Asset ID: {reservation.AssetId}, Employee ID: {reservation.EmployeeId}, Reservation Date: {reservation.ReservationDate}");
+                // Print table header
+                Console.WriteLine("{0,-5} | {1,-8} | {2,-10} | {3,-20}", "ID", "Asset ID", "Emp ID", "Reservation Date");
+                Console.WriteLine(new string('-', 50));
+
+                // Print table row
+                Console.WriteLine("{0,-5} | {1,-8} | {2,-10} | {3,-20}",
+                    reservation.ReservationId,
+                    reservation.AssetId,
+                    reservation.EmployeeId,
+                    reservation.ReservationDate.ToString("yyyy-MM-dd"));
             }
             else
             {
                 Console.WriteLine("Reservation not found.");
             }
+            Console.WriteLine("---------------------------------------------");
         }
 
         static void ViewAllReservations(ReservationService reservationService)
         {
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("View All Reservations");
+            Console.WriteLine("---------------------------------------------");
+
             var reservations = reservationService.GetAllReservations();
+
+            // Print table header
+            Console.WriteLine("{0,-5} | {1,-8} | {2,-10} | {3,-20}", "ID", "Asset ID", "Emp ID", "Reservation Date");
+            Console.WriteLine(new string('-', 50));
+
+            // Print table rows
             foreach (var reservation in reservations)
             {
-                Console.WriteLine($"ID: {reservation.ReservationId}, Asset ID: {reservation.AssetId}, Employee ID: {reservation.EmployeeId}, Reservation Date: {reservation.ReservationDate}");
+                Console.WriteLine("{0,-5} | {1,-8} | {2,-10} | {3,-20}",
+                    reservation.ReservationId,
+                    reservation.AssetId,
+                    reservation.EmployeeId,
+                    reservation.ReservationDate.ToString("yyyy-MM-dd"));
             }
+
+            Console.WriteLine("---------------------------------------------");
         }
     }
 }

@@ -187,6 +187,7 @@
       "AssetManagement.Business/1.0.0": {
         "dependencies": {
           "AssetManagement.Entities": "1.0.0",
+          "AssetManagement.Exceptions": "1.0.0",
           "AssetManagement.Util": "1.0.0",
           "System.Data.SqlClient": "4.8.6"
         },
@@ -205,9 +206,18 @@
           }
         }
       },
+      "AssetManagement.Exceptions/1.0.0": {
+        "runtime": {
+          "AssetManagement.Exceptions.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "AssetManagement.Services/1.0.0": {
         "dependencies": {
-          "AssetManagement.Business": "1.0.0"
+          "AssetManagement.Business": "1.0.0",
+          "AssetManagement.Exceptions": "1.0.0"
         },
         "runtime": {
           "AssetManagement.Services.dll": {
@@ -362,6 +372,11 @@
       "sha512": ""
     },
     "AssetManagement.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AssetManagement.Exceptions/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

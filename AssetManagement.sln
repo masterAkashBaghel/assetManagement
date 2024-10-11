@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetManagement.Services", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetManagement.Util", "AssetManagement.Util\AssetManagement.Util.csproj", "{7CA0D3B4-5C6E-4D90-86D4-540BE862A920}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetManagement.Exceptions", "AssetManagement.Exceptions\AssetManagement.Exceptions.csproj", "{9537D045-7A48-487C-8FED-53AFF4C48D47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{7CA0D3B4-5C6E-4D90-86D4-540BE862A920}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CA0D3B4-5C6E-4D90-86D4-540BE862A920}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CA0D3B4-5C6E-4D90-86D4-540BE862A920}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9537D045-7A48-487C-8FED-53AFF4C48D47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9537D045-7A48-487C-8FED-53AFF4C48D47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9537D045-7A48-487C-8FED-53AFF4C48D47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9537D045-7A48-487C-8FED-53AFF4C48D47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

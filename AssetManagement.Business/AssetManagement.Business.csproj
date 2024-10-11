@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AssetManagement.Entities\AssetManagement.Entities.csproj" />
     <ProjectReference Include="..\AssetManagement.Util\AssetManagement.Util.csproj" />
+    <ProjectReference Include="..\AssetManagement.Exceptions\AssetManagement.Exceptions.csproj" />
   </ItemGroup>
 
   <ItemGroup>

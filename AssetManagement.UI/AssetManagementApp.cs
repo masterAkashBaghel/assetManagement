@@ -8,13 +8,27 @@ namespace AssetManagement.UI
         {
             while (true)
             {
-                Console.WriteLine("Asset Management System");
+                Console.WriteLine("----------------------------------------------------");
+                Console.WriteLine("----------------------------------------------------");
+                Console.WriteLine("-----WELCOME TO ASSET MANAGEMENT DASHBOARD------");
+                Console.WriteLine();
                 Console.WriteLine("1. Manage Employees");
+                Console.WriteLine("----------------------------------------------------");
+
                 Console.WriteLine("2. Manage Assets");
+                Console.WriteLine("----------------------------------------------------");
+
                 Console.WriteLine("3. Manage Maintenance Records");
+                Console.WriteLine("----------------------------------------------------");
+
                 Console.WriteLine("4. Manage Asset Allocations");
+                Console.WriteLine("----------------------------------------------------");
+
                 Console.WriteLine("5. Manage Reservations");
+                Console.WriteLine("----------------------------------------------------");
+
                 Console.WriteLine("6. Exit");
+                Console.WriteLine("----------------------------------------------------");
                 Console.Write("Select an option: ");
                 var option = Console.ReadLine();
 

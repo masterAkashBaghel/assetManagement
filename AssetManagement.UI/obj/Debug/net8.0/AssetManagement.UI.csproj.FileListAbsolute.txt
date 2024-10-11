@@ -37,3 +37,6 @@
 /Users/admin/Desktop/assetManagment/AssetManagement.UI/obj/Debug/net8.0/AssetManagement.UI.pdb
 /Users/admin/Desktop/assetManagment/AssetManagement.UI/obj/Debug/net8.0/AssetManagement.UI.genruntimeconfig.cache
 /Users/admin/Desktop/assetManagment/AssetManagement.UI/obj/Debug/net8.0/ref/AssetManagement.UI.dll
+/Users/admin/Desktop/assetManagment/AssetManagement.UI/bin/Debug/net8.0/appsettings.json
+/Users/admin/Desktop/assetManagment/AssetManagement.UI/bin/Debug/net8.0/AssetManagement.Exceptions.dll
+/Users/admin/Desktop/assetManagment/AssetManagement.UI/bin/Debug/net8.0/AssetManagement.Exceptions.pdb

@@ -308,6 +308,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AssetManagement.Entities": "1.0.0",
+          "AssetManagement.Exceptions": "1.0.0",
           "AssetManagement.Util": "1.0.0",
           "System.Data.SqlClient": "4.8.6"
         },
@@ -328,11 +329,22 @@
           "bin/placeholder/AssetManagement.Entities.dll": {}
         }
       },
+      "AssetManagement.Exceptions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/AssetManagement.Exceptions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AssetManagement.Exceptions.dll": {}
+        }
+      },
       "AssetManagement.Services/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "AssetManagement.Business": "1.0.0"
+          "AssetManagement.Business": "1.0.0",
+          "AssetManagement.Exceptions": "1.0.0"
         },
         "compile": {
           "bin/placeholder/AssetManagement.Services.dll": {}
@@ -921,6 +933,11 @@
       "type": "project",
       "path": "../AssetManagement.Entities/AssetManagement.Entities.csproj",
       "msbuildProject": "../AssetManagement.Entities/AssetManagement.Entities.csproj"
+    },
+    "AssetManagement.Exceptions/1.0.0": {
+      "type": "project",
+      "path": "../AssetManagement.Exceptions/AssetManagement.Exceptions.csproj",
+      "msbuildProject": "../AssetManagement.Exceptions/AssetManagement.Exceptions.csproj"
     },
     "AssetManagement.Services/1.0.0": {
       "type": "project",

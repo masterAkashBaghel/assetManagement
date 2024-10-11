@@ -29,6 +29,9 @@
               "/Users/admin/Desktop/assetManagment/AssetManagement.Entities/AssetManagement.Entities.csproj": {
                 "projectPath": "/Users/admin/Desktop/assetManagment/AssetManagement.Entities/AssetManagement.Entities.csproj"
               },
+              "/Users/admin/Desktop/assetManagment/AssetManagement.Exceptions/AssetManagement.Exceptions.csproj": {
+                "projectPath": "/Users/admin/Desktop/assetManagment/AssetManagement.Exceptions/AssetManagement.Exceptions.csproj"
+              },
               "/Users/admin/Desktop/assetManagment/AssetManagement.Util/AssetManagement.Util.csproj": {
                 "projectPath": "/Users/admin/Desktop/assetManagment/AssetManagement.Util/AssetManagement.Util.csproj"
               }
@@ -133,6 +136,64 @@
         }
       }
     },
+    "/Users/admin/Desktop/assetManagment/AssetManagement.Exceptions/AssetManagement.Exceptions.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/admin/Desktop/assetManagment/AssetManagement.Exceptions/AssetManagement.Exceptions.csproj",
+        "projectName": "AssetManagement.Exceptions",
+        "projectPath": "/Users/admin/Desktop/assetManagment/AssetManagement.Exceptions/AssetManagement.Exceptions.csproj",
+        "packagesPath": "/Users/admin/.nuget/packages/",
+        "outputPath": "/Users/admin/Desktop/assetManagment/AssetManagement.Exceptions/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/admin/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/Users/admin/Desktop/assetManagment/AssetManagement.Services/AssetManagement.Services.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -157,6 +218,9 @@
             "projectReferences": {
               "/Users/admin/Desktop/assetManagment/AssetManagement.Business/AssetManagement.Business.csproj": {
                 "projectPath": "/Users/admin/Desktop/assetManagment/AssetManagement.Business/AssetManagement.Business.csproj"
+              },
+              "/Users/admin/Desktop/assetManagment/AssetManagement.Exceptions/AssetManagement.Exceptions.csproj": {
+                "projectPath": "/Users/admin/Desktop/assetManagment/AssetManagement.Exceptions/AssetManagement.Exceptions.csproj"
               }
             }
           }

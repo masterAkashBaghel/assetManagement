@@ -308,6 +308,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AssetManagement.Entities": "1.0.0",
+          "AssetManagement.Exceptions": "1.0.0",
           "AssetManagement.Util": "1.0.0",
           "System.Data.SqlClient": "4.8.6"
         },
@@ -326,6 +327,16 @@
         },
         "runtime": {
           "bin/placeholder/AssetManagement.Entities.dll": {}
+        }
+      },
+      "AssetManagement.Exceptions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/AssetManagement.Exceptions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AssetManagement.Exceptions.dll": {}
         }
       },
       "AssetManagement.Util/1.0.0": {
@@ -909,6 +920,11 @@
       "path": "../AssetManagement.Entities/AssetManagement.Entities.csproj",
       "msbuildProject": "../AssetManagement.Entities/AssetManagement.Entities.csproj"
     },
+    "AssetManagement.Exceptions/1.0.0": {
+      "type": "project",
+      "path": "../AssetManagement.Exceptions/AssetManagement.Exceptions.csproj",
+      "msbuildProject": "../AssetManagement.Exceptions/AssetManagement.Exceptions.csproj"
+    },
     "AssetManagement.Util/1.0.0": {
       "type": "project",
       "path": "../AssetManagement.Util/AssetManagement.Util.csproj",
@@ -917,7 +933,8 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "AssetManagement.Business >= 1.0.0"
+      "AssetManagement.Business >= 1.0.0",
+      "AssetManagement.Exceptions >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -947,6 +964,9 @@
           "projectReferences": {
             "/Users/admin/Desktop/assetManagment/AssetManagement.Business/AssetManagement.Business.csproj": {
               "projectPath": "/Users/admin/Desktop/assetManagment/AssetManagement.Business/AssetManagement.Business.csproj"
+            },
+            "/Users/admin/Desktop/assetManagment/AssetManagement.Exceptions/AssetManagement.Exceptions.csproj": {
+              "projectPath": "/Users/admin/Desktop/assetManagment/AssetManagement.Exceptions/AssetManagement.Exceptions.csproj"
             }
           }
         }

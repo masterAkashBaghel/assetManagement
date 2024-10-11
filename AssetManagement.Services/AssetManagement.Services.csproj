@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AssetManagement.Business\AssetManagement.Business.csproj" />
+    <ProjectReference Include="..\AssetManagement.Exceptions\AssetManagement.Exceptions.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

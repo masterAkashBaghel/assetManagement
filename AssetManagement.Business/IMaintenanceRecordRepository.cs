@@ -10,5 +10,7 @@ namespace AssetManagement.Business
         bool DeleteMaintenanceRecord(int maintenanceId);
         MaintenanceRecord GetMaintenanceRecordById(int maintenanceId);
         IEnumerable<MaintenanceRecord> GetAllMaintenanceRecords();
+
+        bool PerformMaintenance(int assetId, string maintenanceDate, string description, double cost);
     }
 }

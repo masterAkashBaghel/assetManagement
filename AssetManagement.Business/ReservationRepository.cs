@@ -1,4 +1,5 @@
 using AssetManagement.Entities;
+using AssetManagement.Exceptions;
 using AssetManagement.Util;
 using System;
 using System.Collections.Generic;
@@ -10,65 +11,57 @@ namespace AssetManagement.Business
     {
         public bool ReserveAsset(Reservation reservation)
         {
-            using var connection = DBConnection.GetConnection();
-            var command = new SqlCommand("INSERT INTO Reservations (asset_id, employee_id, reservation_date, start_date, end_date, status) VALUES (@assetId, @employeeId, @reservationDate, @startDate, @endDate, @status)", connection);
-            command.Parameters.AddWithValue("@assetId", reservation.AssetId);
-            command.Parameters.AddWithValue("@employeeId", reservation.EmployeeId);
-            command.Parameters.AddWithValue("@reservationDate", reservation.ReservationDate);
-            command.Parameters.AddWithValue("@startDate", reservation.StartDate);
-            command.Parameters.AddWithValue("@endDate", reservation.EndDate);
-            command.Parameters.AddWithValue("@status", reservation.Status);
+            try
+            {
+                using var connection = DBConnection.GetConnection();
+                var command = new SqlCommand("INSERT INTO Reservations (reservation_id,asset_id, employee_id, reservation_date, start_date, end_date, status) VALUES (@ReservationId,@assetId, @employeeId, @reservationDate, @startDate, @endDate, @status)", connection);
+                command.Parameters.AddWithValue("@ReservationId", reservation.ReservationId);
+                command.Parameters.AddWithValue("@assetId", reservation.AssetId);
+                command.Parameters.AddWithValue("@employeeId", reservation.EmployeeId);
+                command.Parameters.AddWithValue("@reservationDate", reservation.ReservationDate);
+                command.Parameters.AddWithValue("@startDate", reservation.StartDate);
+                command.Parameters.AddWithValue("@endDate", reservation.EndDate);
+                command.Parameters.AddWithValue("@status", reservation.Status);
 
-            connection.Open();
-            return command.ExecuteNonQuery() > 0;
+
+                return command.ExecuteNonQuery() > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new ReservationException("Failed to reserve asset.", ex);
+            }
         }
 
         public bool WithdrawReservation(int reservationId)
         {
-            using var connection = DBConnection.GetConnection();
-            var command = new SqlCommand("DELETE FROM Reservations WHERE reservation_id = @reservationId", connection);
-            command.Parameters.AddWithValue("@reservationId", reservationId);
-
-            connection.Open();
-            return command.ExecuteNonQuery() > 0;
-        }
-
-        public Reservation GetReservationById(int reservationId)
-        {
-            using var connection = DBConnection.GetConnection();
-            var command = new SqlCommand("SELECT * FROM Reservations WHERE reservation_id = @reservationId", connection);
-            command.Parameters.AddWithValue("@reservationId", reservationId);
-
-            connection.Open();
-            using var reader = command.ExecuteReader();
-            if (reader.Read())
+            try
             {
-                return new Reservation
-                {
-                    ReservationId = (int)reader["reservation_id"],
-                    AssetId = (int)reader["asset_id"],
-                    EmployeeId = (int)reader["employee_id"],
-                    ReservationDate = (DateTime)reader["reservation_date"],
-                    StartDate = (DateTime)reader["start_date"],
-                    EndDate = (DateTime)reader["end_date"],
-                    Status = (string)reader["status"]
-                };
+                using var connection = DBConnection.GetConnection();
+                var command = new SqlCommand("DELETE FROM Reservations WHERE reservation_id = @reservationId", connection);
+                command.Parameters.AddWithValue("@reservationId", reservationId);
+
+
+                return command.ExecuteNonQuery() > 0;
             }
-            return null;
+            catch (Exception ex)
+            {
+                throw new ReservationException("Failed to withdraw reservation.", ex);
+            }
         }
 
-        public IEnumerable<Reservation> GetAllReservations()
+        public Reservation? GetReservationById(int reservationId)
         {
-            var reservations = new List<Reservation>();
-            using (var connection = DBConnection.GetConnection())
+            try
             {
-                var command = new SqlCommand("SELECT * FROM Reservations", connection);
+                using var connection = DBConnection.GetConnection();
+                var command = new SqlCommand("SELECT * FROM Reservations WHERE reservation_id = @reservationId", connection);
+                command.Parameters.AddWithValue("@reservationId", reservationId);
 
-                connection.Open();
+
                 using var reader = command.ExecuteReader();
-                while (reader.Read())
+                if (reader.Read())
                 {
-                    reservations.Add(new Reservation
+                    return new Reservation
                     {
                         ReservationId = (int)reader["reservation_id"],
                         AssetId = (int)reader["asset_id"],
@@ -77,10 +70,47 @@ namespace AssetManagement.Business
                         StartDate = (DateTime)reader["start_date"],
                         EndDate = (DateTime)reader["end_date"],
                         Status = (string)reader["status"]
-                    });
+                    };
                 }
+                return null;
             }
-            return reservations;
+            catch (Exception ex)
+            {
+                throw new ReservationException("Failed to retrieve reservation by ID.", ex);
+            }
+        }
+
+        public IEnumerable<Reservation> GetAllReservations()
+        {
+            try
+            {
+                var reservations = new List<Reservation>();
+                using (var connection = DBConnection.GetConnection())
+                {
+                    var command = new SqlCommand("SELECT * FROM Reservations", connection);
+
+
+                    using var reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        reservations.Add(new Reservation
+                        {
+                            ReservationId = (int)reader["reservation_id"],
+                            AssetId = (int)reader["asset_id"],
+                            EmployeeId = (int)reader["employee_id"],
+                            ReservationDate = (DateTime)reader["reservation_date"],
+                            StartDate = (DateTime)reader["start_date"],
+                            EndDate = (DateTime)reader["end_date"],
+                            Status = (string)reader["status"]
+                        });
+                    }
+                }
+                return reservations;
+            }
+            catch (Exception ex)
+            {
+                throw new ReservationException("Failed to retrieve all reservations.", ex);
+            }
         }
     }
 }

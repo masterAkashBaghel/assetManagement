@@ -10,72 +10,109 @@ namespace AssetManagement.Business
     {
         public bool AddEmployee(Employee employee)
         {
-            using var connection = DBConnection.GetConnection();
-            var command = new SqlCommand("INSERT INTO Employees (employee_id ,name, department, email, password) VALUES ( @EmployeeId, @name, @department, @Email, @Password)", connection);
-            command.Parameters.AddWithValue("@EmployeeId", employee.EmployeeId);
-            command.Parameters.AddWithValue("@name", employee.Name);
-            command.Parameters.AddWithValue("@department", employee.Department);
-            command.Parameters.AddWithValue("@Email", employee.Email);
-            command.Parameters.AddWithValue("@Password", employee.Password);
+            try
+            {
+                using var connection = DBConnection.GetConnection();
+                var command = new SqlCommand("INSERT INTO Employees (employee_id, name, department, email, password) VALUES (@EmployeeId, @name, @department, @Email, @Password)", connection);
+                command.Parameters.AddWithValue("@EmployeeId", employee.EmployeeId);
+                command.Parameters.AddWithValue("@name", employee.Name);
+                command.Parameters.AddWithValue("@department", employee.Department);
+                command.Parameters.AddWithValue("@Email", employee.Email);
+                command.Parameters.AddWithValue("@Password", employee.Password);
 
-            connection.Open();
-            return command.ExecuteNonQuery() > 0;
+                var result = command.ExecuteNonQuery();
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
         }
 
         public bool UpdateEmployee(Employee employee)
         {
-            using var connection = DBConnection.GetConnection();
-            var command = new SqlCommand("UPDATE Employees SET name = @name, department = @department, email = @Email, password = @Password WHERE employee_id = @employeeId", connection);
-            command.Parameters.AddWithValue("@name", employee.Name);
-            command.Parameters.AddWithValue("@department", employee.Department);
-            command.Parameters.AddWithValue("@Email", employee.Email);
-            command.Parameters.AddWithValue("@Password", employee.Password);
-            command.Parameters.AddWithValue("@employeeId", employee.EmployeeId);
+            SqlConnection? connection = null;
+            try
+            {
+                connection = DBConnection.GetConnection();
+                var command = new SqlCommand("UPDATE Employees SET name = @name, department = @department, email = @Email, password = @Password WHERE employee_id = @employeeId", connection);
+                command.Parameters.AddWithValue("@name", employee.Name);
+                command.Parameters.AddWithValue("@department", employee.Department);
+                command.Parameters.AddWithValue("@Email", employee.Email);
+                command.Parameters.AddWithValue("@Password", employee.Password);
+                command.Parameters.AddWithValue("@employeeId", employee.EmployeeId);
 
-            connection.Open();
-            return command.ExecuteNonQuery() > 0;
+                return command.ExecuteNonQuery() > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
         }
 
         public bool DeleteEmployee(int employeeId)
         {
-            using var connection = DBConnection.GetConnection();
-            var command = new SqlCommand("DELETE FROM Employees WHERE employee_id = @employeeId", connection);
-            command.Parameters.AddWithValue("@employeeId", employeeId);
+            try
+            {
+                using var connection = DBConnection.GetConnection();
+                var command = new SqlCommand("DELETE FROM Employees WHERE employee_id = @employeeId", connection);
+                command.Parameters.AddWithValue("@employeeId", employeeId);
 
-            connection.Open();
-            return command.ExecuteNonQuery() > 0;
+                return command.ExecuteNonQuery() > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
         }
 
-        public Employee GetEmployeeById(int employeeId)
+        public Employee? GetEmployeeById(int employeeId)
         {
-            using var connection = DBConnection.GetConnection();
-            var command = new SqlCommand("SELECT * FROM Employees WHERE employee_id = @employeeId", connection);
-            command.Parameters.AddWithValue("@employeeId", employeeId);
-
-            connection.Open();
-            using var reader = command.ExecuteReader();
-            if (reader.Read())
+            try
             {
-                return new Employee
+                using var connection = DBConnection.GetConnection();
+                var command = new SqlCommand("SELECT * FROM Employees WHERE employee_id = @employeeId", connection);
+                command.Parameters.AddWithValue("@employeeId", employeeId);
+
+                using var reader = command.ExecuteReader();
+                if (reader.Read())
                 {
-                    EmployeeId = (int)reader["employee_id"],
-                    Name = (string)reader["name"],
-                    Department = (string)reader["department"],
-                    Email = (string)reader["email"],
-                    Password = (string)reader["password"]
-                };
+                    return new Employee
+                    {
+                        EmployeeId = (int)reader["employee_id"],
+                        Name = (string)reader["name"],
+                        Department = (string)reader["department"],
+                        Email = (string)reader["email"],
+                        Password = (string)reader["password"]
+                    };
+                }
+                return null;
             }
-            return null;
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
         }
 
         public IEnumerable<Employee> GetAllEmployees()
         {
-            var employees = new List<Employee>();
-            using (var connection = DBConnection.GetConnection())
+            try
             {
+                var employees = new List<Employee>();
+                using var connection = DBConnection.GetConnection();
                 var command = new SqlCommand("SELECT * FROM Employees", connection);
 
-                connection.Open();
                 using var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -88,8 +125,13 @@ namespace AssetManagement.Business
                         Password = (string)reader["password"]
                     });
                 }
+                return employees;
             }
-            return employees;
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<Employee>();
+            }
         }
     }
 }

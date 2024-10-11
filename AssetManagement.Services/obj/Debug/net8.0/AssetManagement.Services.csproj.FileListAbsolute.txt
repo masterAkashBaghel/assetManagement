@@ -18,3 +18,5 @@
 /Users/admin/Desktop/assetManagment/AssetManagement.Services/obj/Debug/net8.0/refint/AssetManagement.Services.dll
 /Users/admin/Desktop/assetManagment/AssetManagement.Services/obj/Debug/net8.0/AssetManagement.Services.pdb
 /Users/admin/Desktop/assetManagment/AssetManagement.Services/obj/Debug/net8.0/ref/AssetManagement.Services.dll
+/Users/admin/Desktop/assetManagment/AssetManagement.Services/bin/Debug/net8.0/AssetManagement.Exceptions.dll
+/Users/admin/Desktop/assetManagment/AssetManagement.Services/bin/Debug/net8.0/AssetManagement.Exceptions.pdb

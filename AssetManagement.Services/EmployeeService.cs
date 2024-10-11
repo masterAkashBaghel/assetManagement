@@ -1,5 +1,6 @@
 using AssetManagement.Business;
 using AssetManagement.Entities;
+using AssetManagement.Exceptions;
 
 namespace AssetManagement.Services
 {
@@ -19,17 +20,30 @@ namespace AssetManagement.Services
 
         public bool UpdateEmployee(Employee employee)
         {
+            if (_employeeRepository.GetEmployeeById(employee.EmployeeId) == null)
+            {
+                throw new EmployeeNotFoundException(employee.EmployeeId);
+            }
             return _employeeRepository.UpdateEmployee(employee);
         }
 
         public bool DeleteEmployee(int employeeId)
         {
+            if (_employeeRepository.GetEmployeeById(employeeId) == null)
+            {
+                throw new EmployeeNotFoundException(employeeId);
+            }
             return _employeeRepository.DeleteEmployee(employeeId);
         }
 
         public Employee GetEmployeeById(int employeeId)
         {
-            return _employeeRepository.GetEmployeeById(employeeId);
+            var employee = _employeeRepository.GetEmployeeById(employeeId);
+            if (employee == null)
+            {
+                throw new EmployeeNotFoundException(employeeId);
+            }
+            return employee;
         }
 
         public IEnumerable<Employee> GetAllEmployees()
