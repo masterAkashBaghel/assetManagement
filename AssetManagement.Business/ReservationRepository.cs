@@ -13,6 +13,10 @@ namespace AssetManagement.Business
         {
             try
             {
+                ValidateDateTime(reservation.ReservationDate);
+                ValidateDateTime(reservation.StartDate);
+                ValidateDateTime(reservation.EndDate);
+
                 using var connection = DBConnection.GetConnection();
                 var command = new SqlCommand("INSERT INTO Reservations (reservation_id,asset_id, employee_id, reservation_date, start_date, end_date, status) VALUES (@ReservationId,@assetId, @employeeId, @reservationDate, @startDate, @endDate, @status)", connection);
                 command.Parameters.AddWithValue("@ReservationId", reservation.ReservationId);
@@ -28,7 +32,14 @@ namespace AssetManagement.Business
             }
             catch (Exception ex)
             {
-                throw new ReservationException("Failed to reserve asset.", ex);
+                throw new ReservationException("Failed to reserve asset --->.", ex);
+            }
+        }
+        private void ValidateDateTime(DateTime dateTime)
+        {
+            if (dateTime < new DateTime(1753, 1, 1) || dateTime > (DateTime)System.Data.SqlTypes.SqlDateTime.MaxValue)
+            {
+                throw new ReservationException("DateTime value is out of range for SQL Server.");
             }
         }
 

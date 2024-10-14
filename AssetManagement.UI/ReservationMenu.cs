@@ -62,6 +62,20 @@ namespace AssetManagement.UI
             reservation.EmployeeId = int.Parse(Console.ReadLine());
             Console.Write("Enter Reservation Date (yyyy-mm-dd): ");
             reservation.ReservationDate = DateTime.Parse(Console.ReadLine());
+            Console.Write("Enter Start Date (yyyy-mm-dd): ");
+            reservation.StartDate = DateTime.Parse(Console.ReadLine());
+            Console.Write("Enter End Date (yyyy-mm-dd): ");
+            reservation.EndDate = DateTime.Parse(Console.ReadLine());
+            Console.Write("Enter Status: ");
+            reservation.Status = Console.ReadLine();
+
+
+            // Ensure the dates are within the valid range for SQL Server
+            if (reservation.ReservationDate < new DateTime(1753, 1, 1) || reservation.StartDate < new DateTime(1753, 1, 1) || reservation.EndDate < new DateTime(1753, 1, 1))
+            {
+                Console.WriteLine("DateTime value is out of range for SQL Server.");
+                return;
+            }
 
             if (reservationService.ReserveAsset(reservation))
             {
@@ -73,7 +87,6 @@ namespace AssetManagement.UI
             }
             Console.WriteLine("---------------------------------------------");
         }
-
         static void WithdrawReservation(ReservationService reservationService)
         {
             Console.WriteLine("---------------------------------------------");
