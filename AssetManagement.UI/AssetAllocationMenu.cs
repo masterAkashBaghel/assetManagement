@@ -7,8 +7,11 @@ namespace AssetManagement.UI
 {
     public static class AssetAllocationMenu
     {
+
+        // Method to display the Asset Allocation menu, take user input, and call the appropriate methods
         public static void Show()
         {
+            // Create an instance of the AssetAllocationService class with an instance of the AssetAllocationRepository class
             var assetAllocationService = new AssetAllocationService(new AssetAllocationRepository());
 
             while (true)
@@ -59,10 +62,13 @@ namespace AssetManagement.UI
             }
         }
 
+        // Method to allocate an asset to an employee
         static void AllocateAsset(AssetAllocationService assetAllocationService)
         {
+            // Create a new instance of the AssetAllocation class to hold the allocation details
             var assetAllocation = new AssetAllocation();
 
+            // Prompt the user to enter the asset ID, employee ID, and allocation date
             Console.WriteLine("---------------------------------------------");
             Console.WriteLine("---------------------------------------------");
             Console.WriteLine("----------ALLOCATE ASSET---------");
@@ -83,6 +89,8 @@ namespace AssetManagement.UI
             }
         }
 
+        // Method to deallocate an asset from an employee, prompt the user to enter the allocation ID and return date
+        // Call the DeallocateAsset method of the AssetAllocationService class and display, this method receives the AssetAllocationService instance as a parameter
         static void DeallocateAsset(AssetAllocationService assetAllocationService)
         {
             Console.WriteLine("---------------------------------------------");
@@ -103,6 +111,10 @@ namespace AssetManagement.UI
             }
         }
 
+
+
+        // Method to view an asset allocation by its ID
+        // Prompt the user to enter the allocation ID, call the GetAssetAllocationById method of the AssetAllocationService class, and display the result
         static void ViewAssetAllocationById(AssetAllocationService assetAllocationService)
         {
             Console.WriteLine("---------------------------------------------");
@@ -128,6 +140,8 @@ namespace AssetManagement.UI
             }
         }
 
+        // Method to view all asset allocations , call the GetAllAssetAllocations method of the AssetAllocationService class and display
+        // this method receives the AssetAllocationService instance as a parameter
         static void ViewAllAssetAllocations(AssetAllocationService assetAllocationService)
         {
             var assetAllocations = assetAllocationService.GetAllAssetAllocations();

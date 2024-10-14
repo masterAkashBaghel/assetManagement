@@ -1,67 +1,81 @@
 using AssetManagement.Business;
 using AssetManagement.Entities;
-using AssetManagement.Exceptions.AssetManagement.Exceptions;
 
 namespace AssetManagement.Services
 {
+    // Class to interact with the AssetAllocationRepository class and perform operations on asset allocations
     public class AssetAllocationService
     {
+        // Private field to hold an instance of the AssetAllocationRepository class
         private readonly AssetAllocationRepository _assetAllocationRepository;
 
+
+        // Constructor to create an instance of the AssetAllocationService class with an instance of the AssetAllocationRepository class
         public AssetAllocationService(AssetAllocationRepository assetAllocationRepository)
         {
+            // Assign the parameter to the private field
             _assetAllocationRepository = assetAllocationRepository;
         }
 
+        // Method to allocate an asset to an employee
         public bool AllocateAsset(AssetAllocation assetAllocation)
         {
             try
             {
+                // Call the AllocateAsset method of the AssetAllocationRepository class and return the result
                 return _assetAllocationRepository.AllocateAsset(assetAllocation);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error allocating asset: {ex.Message}");
-                throw new AssetAllocationException("Failed to allocate asset.", ex);
+                return false;
             }
         }
 
+        // Method to deallocate an asset from an employee
         public bool DeallocateAsset(int allocationId, DateTime returnDate)
         {
             try
             {
+                // Call the DeallocateAsset method of the AssetAllocationRepository class and return the result
                 return _assetAllocationRepository.DeallocateAsset(allocationId, returnDate);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error deallocating asset: {ex.Message}");
-                throw new AssetAllocationException("Failed to deallocate asset.", ex);
+                return false;
             }
         }
+
+        // Method to get an asset allocation by ID  
 
         public AssetAllocation GetAssetAllocationById(int allocationId)
         {
             try
             {
+                // Call the GetAssetAllocationById method of the AssetAllocationRepository class and return the result
                 return _assetAllocationRepository.GetAssetAllocationById(allocationId);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error retrieving asset allocation: {ex.Message}");
-                throw new AssetAllocationException("Failed to retrieve asset allocation.", ex);
+                return null;
             }
         }
 
+
+        // Method to get all asset allocations , returns a list of AssetAllocation objects
         public IEnumerable<AssetAllocation> GetAllAssetAllocations()
         {
             try
             {
+                // Call the GetAllAssetAllocations method of the AssetAllocationRepository class and return the result
                 return _assetAllocationRepository.GetAllAssetAllocations();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error retrieving all asset allocations: {ex.Message}");
-                throw new AssetAllocationException("Failed to retrieve all asset allocations.", ex);
+                return null;
             }
         }
 

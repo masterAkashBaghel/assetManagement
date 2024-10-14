@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace AssetManagement.Business
 {
+    // Interface for the AssetAllocationRepository class
     public interface IAssetAllocationRepository
     {
         bool AllocateAsset(AssetAllocation assetAllocation);

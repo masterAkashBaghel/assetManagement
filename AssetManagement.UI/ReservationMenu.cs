@@ -7,12 +7,16 @@ namespace AssetManagement.UI
 {
     public static class ReservationMenu
     {
+        // Method to display the reservation management menu
         public static void Show()
         {
+            // Initialize the ReservationService with an instance of ReservationRepository
             var reservationService = new ReservationService(new ReservationRepository());
 
+            // Infinite loop to keep the menu running until the user chooses to exit
             while (true)
             {
+                // Display the menu options
                 Console.WriteLine("---------------------------------------------");
                 Console.WriteLine("Reservation Management");
                 Console.WriteLine("---------------------------------------------");
@@ -25,6 +29,7 @@ namespace AssetManagement.UI
                 Console.Write("Select an option: ");
                 var option = Console.ReadLine();
 
+                // Handle the user's selection
                 switch (option)
                 {
                     case "1":
@@ -40,7 +45,7 @@ namespace AssetManagement.UI
                         ViewAllReservations(reservationService);
                         break;
                     case "5":
-                        return;
+                        return; // Exit the menu
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
                         break;
@@ -48,12 +53,15 @@ namespace AssetManagement.UI
             }
         }
 
+        // Method to reserve an asset
         static void ReserveAsset(ReservationService reservationService)
         {
             var reservation = new Reservation();
             Console.WriteLine("---------------------------------------------");
             Console.WriteLine("Reserve Asset");
             Console.WriteLine("---------------------------------------------");
+
+            // Prompt the user to enter reservation details
             Console.Write("Enter reservation ID: ");
             reservation.ReservationId = int.Parse(Console.ReadLine());
             Console.Write("Enter Asset ID: ");
@@ -69,7 +77,6 @@ namespace AssetManagement.UI
             Console.Write("Enter Status: ");
             reservation.Status = Console.ReadLine();
 
-
             // Ensure the dates are within the valid range for SQL Server
             if (reservation.ReservationDate < new DateTime(1753, 1, 1) || reservation.StartDate < new DateTime(1753, 1, 1) || reservation.EndDate < new DateTime(1753, 1, 1))
             {
@@ -77,6 +84,7 @@ namespace AssetManagement.UI
                 return;
             }
 
+            // Attempt to reserve the asset using the ReservationService
             if (reservationService.ReserveAsset(reservation))
             {
                 Console.WriteLine("Asset reserved successfully.");
@@ -87,14 +95,19 @@ namespace AssetManagement.UI
             }
             Console.WriteLine("---------------------------------------------");
         }
+
+        // Method to withdraw a reservation
         static void WithdrawReservation(ReservationService reservationService)
         {
             Console.WriteLine("---------------------------------------------");
             Console.WriteLine("Withdraw Reservation");
             Console.WriteLine("---------------------------------------------");
+
+            // Prompt the user to enter the reservation ID to withdraw
             Console.Write("Enter Reservation ID: ");
             var reservationId = int.Parse(Console.ReadLine());
 
+            // Attempt to withdraw the reservation using the ReservationService
             if (reservationService.WithdrawReservation(reservationId))
             {
                 Console.WriteLine("Reservation withdrawn successfully.");
@@ -106,14 +119,18 @@ namespace AssetManagement.UI
             Console.WriteLine("---------------------------------------------");
         }
 
+        // Method to view a reservation by its ID
         static void ViewReservationById(ReservationService reservationService)
         {
             Console.WriteLine("---------------------------------------------");
             Console.WriteLine("View Reservation by ID");
             Console.WriteLine("---------------------------------------------");
+
+            // Prompt the user to enter the reservation ID to view
             Console.Write("Enter Reservation ID: ");
             var reservationId = int.Parse(Console.ReadLine());
 
+            // Retrieve the reservation using the ReservationService
             var reservation = reservationService.GetReservationById(reservationId);
             if (reservation != null)
             {
@@ -135,12 +152,14 @@ namespace AssetManagement.UI
             Console.WriteLine("---------------------------------------------");
         }
 
+        // Method to view all reservations
         static void ViewAllReservations(ReservationService reservationService)
         {
             Console.WriteLine("---------------------------------------------");
             Console.WriteLine("View All Reservations");
             Console.WriteLine("---------------------------------------------");
 
+            // Retrieve all reservations using the ReservationService
             var reservations = reservationService.GetAllReservations();
 
             // Print table header

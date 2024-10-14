@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace AssetManagement.Business
 {
+    // Interface for the ReservationRepository class
     public interface IReservationRepository
     {
         bool ReserveAsset(Reservation reservation);
